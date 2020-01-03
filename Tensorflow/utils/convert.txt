@@ -1,0 +1,4 @@
+tflite_convert --graph_def_file=frozen.pb --output_file=tmp.tflite --output_format=TFLITE --inference_type=QUANTIZED_UINT8 --input_shapes=1,224,224,3 --input_arrays=input_node --output_arrays=output_node --std_dev_values=1  --mean_value=0
+
+
+
