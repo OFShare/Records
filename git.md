@@ -47,4 +47,8 @@
 
 - `git push origin --tags`
 
+##### Others
+
+- `git remote -v`
+
 [Create a git BitBucket/ Github repository from already locally existing project](http://samranga.blogspot.com/2015/07/create-git-bitbucket-repository-from.html?view=sidebar)
