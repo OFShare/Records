@@ -47,6 +47,27 @@
 
 - `git push origin --tags`
 
+##### 修改某次 commit 日志和内容
+
+```c
+1、将当前分支无关的工作状态进行暂存
+git stash
+2、将 HEAD 移动到需要修改的 commit 的前一个上
+commit d87dbd5c076
+commit1
+commit a37c03214ad
+commit2
+commit a37c034543d
+commit3
+我要修改commit2的内容和日志
+git rebase a37c034543d --interactive
+3、找到要改的commit，将pick改成edit
+4、修改内容，然后git add
+5、git commit --amend
+6、git rebase --continue
+7、git stash pop
+```
+
 ##### Others
 
 - `git remote -v`
