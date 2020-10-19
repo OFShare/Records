@@ -7,15 +7,19 @@
   - 在 Gradle 之外使用 CMake 进行构建时，`工具链文件本身`(即$ANDROID_NDK/build/cmake/android.toolchain.cmake文件)及其参数必须传递给 CMake
 
    ```shell
+  export ANDROID_CMAKE=/Users/acui/Library/Android/sdk/cmake/3.6.4111459/bin/cmake
   export ANDROID_NDK=/Users/acui/Library/Android/sdk/ndk/android-ndk-r16b
   
-  work_path=$(dirname $0)
+  # get absolute path
+  work_path=$(cd `dirname $0`; pwd)
+  echo "work_path:$work_path"
+  
   cd $work_path
   rm -rf android_release_v8a
   mkdir android_release_v8a
   cd android_release_v8a
   
-  cmake .. \
+  $ANDROID_CMAKE .. \
   	-DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake \
   	-DANDROID_TOOLCHAIN_NAME=llvm \
   	-DANDROID_TOOLCHAIN=clang \
