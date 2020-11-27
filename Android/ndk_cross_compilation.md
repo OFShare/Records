@@ -7,10 +7,16 @@
   - 在 Gradle 之外使用 CMake 进行构建时，`工具链文件本身`(即$ANDROID_NDK/build/cmake/android.toolchain.cmake文件)及其参数必须传递给 CMake
 
    ```shell
+  #!/bin/bash
+  # set -e
+  # What this does, at the top of your bash script is that it exits as soon as any line in the bash script fails.
+  # set -x
+  # What this does is that it prints each command that is going to be executed with a little plus.
+  set -ex
   export ANDROID_CMAKE=/Users/acui/Library/Android/sdk/cmake/3.6.4111459/bin/cmake
   export ANDROID_NDK=/Users/acui/Library/Android/sdk/ndk/android-ndk-r16b
   
-  # get absolute path
+  # Get absolute path
   work_path=$(cd `dirname $0`; pwd)
   echo "work_path:$work_path"
   
@@ -27,7 +33,8 @@
   	-DANDROID_ABI="arm64-v8a" \
   	-DANDROID_ARM_NEON=ON \
   	-DANDROID_STL=c++_shared \
-  	-DANDROID_NATIVE_API_LEVEL=android-19
+  	-DANDROID_NATIVE_API_LEVEL=android-19 \
+  	-DANDROID_LINKER_FLAGS="-landroid -llog"
   	
   make -j4
    ```
@@ -55,6 +62,17 @@
   - NDK 支持多种 C++ 运行时库, 每个应用一个 STL, "虽然我们努力保持 NDK 各个版本 ABI 的兼容性，但这并非总能实现。为了获得最佳的兼容性，您除了要使用与依赖项相同的 STL，还需尽可能使用相同版本的 NDK。"
 
   - 启用c++异常: -fexceptions, 启用 RTTI: -frtti
+
+  - 在运行时需要手动导入c ++ STL运行时库时, 可以通过该命令`find /Users/acui/Library/Android/sdk/ndk/21.0.6113669/ -iname "lib*c++_shared.so"` 查找, 然后放到`src/main/jniLibs`目录里, 该目录比较特殊. 构建的APK默认会把该目录里的so打进APK里, 如果是其他目录名字需要指定一下如:
+
+    ```c++
+    // 指定运行时so的地址, AS默认匹配main下的jniLibs目录
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    ```
 
   - [Android NDK APP_STL gnustl_shared is no longer supported](https://stackoverflow.com/questions/52475177/android-ndk-app-stl-gnustl-shared-is-no-longer-supported)
 
