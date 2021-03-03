@@ -53,7 +53,7 @@ int main(void) {
 }
 ```
 
-`clang++ -std=c++11 -framework OpenCL demo2.cc`
+`clang++ -std=c++11 -framework OpenCL demo2.cc`, 特别注意开头2行需要定义的宏.
 
 为了运行[`OpenCL C++ bindings API`](http://github.khronos.org/OpenCL-CLHPP/), 我们需要去[OpenCL-CLHPP](https://github.com/KhronosGroup/OpenCL-CLHPP)先手动下载`opencl.hpp`这个头文件, 然后放到`includePath`可以搜索到的地方, 如当前目录. 
 
@@ -65,7 +65,7 @@ int main(void) {
 
 ### OpenCL推荐资料
 
-[Matthew Scarpino — OpenCL in Action英文原版](https://github.com/OFShare/OpenCL_Examples/blob/master/OpenCL_Books/Matthew Scarpino — OpenCL in Action — 2011.zip)
+[Matthew Scarpino — OpenCL in Action英文原版](https://github.com/DevNulPavel/OpenCL_Examples/tree/master/OpenCL_Books)
 
 [Opencl in Action 在线中文版](http://reader.epubee.com/books/mobile/e5/e58a7de5d56cdda0ba09d83064083cc1/text00001.html)
 
