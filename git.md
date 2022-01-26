@@ -6,6 +6,27 @@
 ##### add ssh key
 - `ssh-keygen -t rsa -C "your.email@example.com" -b 4096`
 
+##### view local current branch
+
+- `git branch`
+
+##### fork a new branch from the current branch
+
+- `git checkout -b new_branch`
+
+##### switch back to an existing local branch
+
+- `git checkout exist_branch`
+
+##### fully fallback to a commit
+
+- `git log`
+- `git reset --hard xxxxxx`
+
+##### delete untracked files and folders in the current directory
+
+- `git clean -df`
+
 
 ##### delete remote/local branch or tag
 
@@ -34,42 +55,25 @@
 ##### add/modify git author and email
 
 - set global
-- `git config --global user.name "Author Name"`
-- `git config --global user.email "Author Email"`
+  - `git config --global user.name "Author Name"`
+  - `git config --global user.email "Author Email"`
+
 - set local 
-- `git config user.name "Author Name"`
-- `git config user.email "Author Email"`
+  - `git config user.name "Author Name"`
+  - `git config user.email "Author Email"`
+
 - locate and delete global
-- `git config --list`
-- `git config --global --unset user.name`
+  - `git config --list`
+  - `git config --global --unset user.name`
+
 
 ##### push local tags to remote
 
 - `git push origin --tags`
 
-##### 修改某次 commit 日志和内容
-
-```c
-1、将当前分支无关的工作状态进行暂存
-git stash
-2、将 HEAD 移动到需要修改的 commit 的前一个上
-commit d87dbd5c076
-commit1
-commit a37c03214ad
-commit2
-commit a37c034543d
-commit3
-我要修改commit2的内容和日志
-git rebase a37c034543d --interactive
-3、找到要改的commit，将pick改成edit
-4、修改内容，然后git add
-5、git commit --amend
-6、git rebase --continue
-7、git stash pop
-```
-
 ##### Others
 
 - `git remote -v`
+- `git stash`
 
 [Create a git BitBucket/ Github repository from already locally existing project](http://samranga.blogspot.com/2015/07/create-git-bitbucket-repository-from.html?view=sidebar)
